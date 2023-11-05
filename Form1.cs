@@ -33,7 +33,7 @@ namespace WindowsFormsApp1
             }
 
         }
-
+        // a
         private void buttonSendS_Click(object sender, EventArgs e)
         {
             try
