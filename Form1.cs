@@ -69,7 +69,7 @@ namespace WindowsFormsApp1
             else
                 monTimer.Enabled = true;
         }
-        // receive 
+        // receive  les info et envoi des messages d'erreurs
         private void buttonReceiveS_Click(object sender, EventArgs e)
         {
             try
@@ -77,7 +77,7 @@ namespace WindowsFormsApp1
                 IPEndPoint iped = new IPEndPoint(IPAddress.Parse(this.textBoxIPS.Text), int.Parse(this.textBoxPortS.Text));
                 SSockUDP.Bind(iped);
                 monTimer.Tick += new EventHandler(checkNewMessage);
-                monTimer.Interval = 5000;
+                monTimer.Interval = 2500;
                 monTimer.Start();
 
             }
@@ -93,7 +93,32 @@ namespace WindowsFormsApp1
             {
                 this.textBoxReceiveS.Text += "Erreur : Socket inexistante" + Environment.NewLine;
             }
-      
+        }
+        // close le programme la fenetre
+        private void buttonCloseS_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SSockUDP.Shutdown(SocketShutdown.Both);
+                SSockUDP.Close();
+            }
+            catch (System.Net.Sockets.SocketException se)
+            {
+                this.textBoxReceiveS.Text += "Message d’erreur : " + se.ToString() + Environment.NewLine;
+            }
+            catch (System.NullReferenceException)
+            {
+                this.textBoxReceiveS.Text += "Erreur : Socket inexistante" + Environment.NewLine;
+            }
+            catch (System.ObjectDisposedException se)
+            {
+                this.textBoxReceiveS.Text += "Message d’erreur : " + se.ToString() + Environment.NewLine;
+            }
+        }
+
+        private void textBoxReceiveS_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

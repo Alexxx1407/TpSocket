@@ -67,7 +67,7 @@ namespace WindowsFormsApp1
             // 
             // buttonSendS
             // 
-            this.buttonSendS.Location = new System.Drawing.Point(225, 345);
+            this.buttonSendS.Location = new System.Drawing.Point(416, 120);
             this.buttonSendS.Name = "buttonSendS";
             this.buttonSendS.Size = new System.Drawing.Size(75, 23);
             this.buttonSendS.TabIndex = 3;
@@ -87,7 +87,7 @@ namespace WindowsFormsApp1
             // 
             // buttonCloseS
             // 
-            this.buttonCloseS.Location = new System.Drawing.Point(315, 345);
+            this.buttonCloseS.Location = new System.Drawing.Point(403, 73);
             this.buttonCloseS.Name = "buttonCloseS";
             this.buttonCloseS.Size = new System.Drawing.Size(88, 23);
             this.buttonCloseS.TabIndex = 5;
