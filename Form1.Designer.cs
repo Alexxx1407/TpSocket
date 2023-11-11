@@ -53,6 +53,7 @@ namespace WindowsFormsApp1
             this.textBoxReceiveS.Name = "textBoxReceiveS";
             this.textBoxReceiveS.Size = new System.Drawing.Size(313, 278);
             this.textBoxReceiveS.TabIndex = 1;
+            this.textBoxReceiveS.TextChanged += new System.EventHandler(this.textBoxReceiveS_TextChanged);
             // 
             // buttonCreateS
             // 
