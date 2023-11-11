@@ -56,5 +56,44 @@ namespace WindowsFormsApp1
                 this.textBoxReceiveS.Text += "Erreur : Socket inexistante" + Environment.NewLine;
             }
         }
+        private void checkNewMessage(Object myObject, EventArgs myEventArgs)
+        {
+            monTimer.Stop();
+            if (SSockUDP.Available >= 1)
+            {
+                var messageRecu = new byte[1024];
+                int nbcarrecu = SSockUDP.Receive(messageRecu);
+                this.textBoxReceiveS.Text += "[" + nbcarrecu + "] " +
+                 Encoding.ASCII.GetString(messageRecu, 0, nbcarrecu) + Environment.NewLine;
+            }
+            else
+                monTimer.Enabled = true;
+        }
+        // receive 
+        private void buttonReceiveS_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                IPEndPoint iped = new IPEndPoint(IPAddress.Parse(this.textBoxIPS.Text), int.Parse(this.textBoxPortS.Text));
+                SSockUDP.Bind(iped);
+                monTimer.Tick += new EventHandler(checkNewMessage);
+                monTimer.Interval = 5000;
+                monTimer.Start();
+
+            }
+            catch (System.Net.Sockets.SocketException se)
+            {
+                this.textBoxReceiveS.Text += "Message d’erreur : " + se.ToString() + Environment.NewLine;
+            }
+            catch (System.FormatException se)
+            {
+                this.textBoxReceiveS.Text += "Message d’erreur : " + se.ToString() + Environment.NewLine;
+            }
+            catch (System.NullReferenceException)
+            {
+                this.textBoxReceiveS.Text += "Erreur : Socket inexistante" + Environment.NewLine;
+            }
+      
+        }
     }
 }
